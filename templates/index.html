@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Shop - UrbanMart{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="hero">
+        <h1>Discover Your Perfect Style</h1>
+        <p>Explore our premium collection of fashion, electronics, and lifestyle products. Quality you love, style you deserve</p>
+        <button class="btn-primary shop-now">Shop Now</button>
+    </div>
+
+    <div class="filters">
+        <button class="filter-btn active" data-category="all">All Products</button>
+        <button class="filter-btn" data-category="Electronics">Electronics</button>
+        <button class="filter-btn" data-category="Clothing">Clothing</button>
+        <button class="filter-btn" data-category="Home">Home & Living</button>
+        <button class="filter-btn" data-category="Accessories">Accessories</button>
+    </div>
+
+    <div id="products-grid" class="products-grid">
+        <div class="loading">
+            <i class="fas fa-spinner fa-spin"></i> Loading amazing products...
+        </div>
+    </div>
+</div>
+
+<!-- Toast Notification -->
+<div id="toast" class="toast"></div>
+{% endblock %}

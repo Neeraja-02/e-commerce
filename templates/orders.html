@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Orders - UrbanMart{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="orders-header">
+        <h1><i class="fas fa-truck"></i> Your Orders</h1>
+        <p>Track and manage your orders</p>
+    </div>
+    
+    <div id="orders-list" class="orders-list">
+        <div class="loading">
+            <i class="fas fa-spinner fa-spin"></i> Loading your orders...
+        </div>
+    </div>
+</div>
+{% endblock %}

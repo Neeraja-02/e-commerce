@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block title %}Cart - UrbanMart{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="cart-header">
+        <h1><i class="fas fa-shopping-cart"></i> Your Shopping Cart</h1>
+    </div>
+    
+    <div class="cart-layout">
+        <div class="cart-items-container">
+            <div id="cart-items" class="cart-items">
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-basket fa-3x"></i>
+                    <p>Your cart is empty</p>
+                    <a href="{{ url_for('index') }}" class="btn-primary">Continue Shopping</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cart-summary-container">
+            <div class="cart-summary">
+                <h3>Order Summary</h3>
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span>$<span id="subtotal">0.00</span></span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping:</span>
+                    <span>Free</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total:</span>
+                    <span>$<span id="cart-total">0.00</span></span>
+                </div>
+                <button id="checkout-btn" class="btn-primary checkout-btn">
+                    Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Checkout Modal -->
+<div id="checkout-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2><i class="fas fa-credit-card"></i> Checkout</h2>
+        
+        <form id="checkout-form">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="customer-name" required placeholder="John Doe">
+            </div>
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="customer-email" required placeholder="john@example.com">
+            </div>
+            <div class="form-group">
+                <label>Shipping Address</label>
+                <textarea id="customer-address" required rows="3" placeholder="123 Main St, City, State 12345"></textarea>
+            </div>
+            
+            <!-- Payment Methods -->
+            <div class="form-group">
+                <label>Select Payment Method</label>
+                <div class="payment-methods">
+                    <label class="payment-option">
+                        <input type="radio" name="payment_method" value="credit_card" checked>
+                        <i class="fab fa-cc-visa"></i> Credit/Debit Card
+                    </label>
+                    <label class="payment-option">
+                        <input type="radio" name="payment_method" value="paypal">
+                        <i class="fab fa-paypal"></i> PayPal
+                    </label>
+                    <label class="payment-option">
+                        <input type="radio" name="payment_method" value="upi">
+                        <i class="fas fa-mobile-alt"></i> UPI
+                    </label>
+                    <label class="payment-option">
+                        <input type="radio" name="payment_method" value="cod">
+                        <i class="fas fa-money-bill-wave"></i> Cash on Delivery
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Credit Card Details -->
+            <div id="credit-card-fields" class="payment-fields">
+                <div class="form-group">
+                    <label>Card Number</label>
+                    <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Expiry Date</label>
+                        <input type="text" id="card-expiry" placeholder="MM/YY" maxlength="5">
+                    </div>
+                    <div class="form-group">
+                        <label>CVV</label>
+                        <input type="password" id="card-cvv" placeholder="123" maxlength="4">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PayPal Fields -->
+            <div id="paypal-fields" class="payment-fields" style="display:none;">
+                <div class="form-group">
+                    <label>PayPal Email</label>
+                    <input type="email" id="paypal-email" placeholder="your-email@paypal.com">
+                </div>
+            </div>
+            
+            <!-- UPI Fields -->
+            <div id="upi-fields" class="payment-fields" style="display:none;">
+                <div class="form-group">
+                    <label>UPI ID</label>
+                    <input type="text" id="upi-id" placeholder="username@okhdfcbank">
+                </div>
+            </div>
+            
+            <!-- COD Message -->
+            <div id="cod-message" class="payment-message" style="display:none;">
+                <p><i class="fas fa-truck"></i> Pay when you receive the product!</p>
+            </div>
+            
+            <button type="submit" class="btn-primary">Place Order</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
